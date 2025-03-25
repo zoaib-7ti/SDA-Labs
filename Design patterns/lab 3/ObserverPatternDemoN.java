@@ -77,15 +77,23 @@ class HexaObserver extends Observer {
 
 public class ObserverPatternDemoN {
    public static void main(String[] args) {
-      Subject subject = new Subject();
+      Subject youtubeChannel = new Subject(); // Creating a YouTube Channel
 
-      new HexaObserver(subject);
-      new OctalObserver(subject);
-      new BinaryObserver(subject);
+      // Subscribers joining the channel
+      HexaObserver subscriber1 = new HexaObserver(youtubeChannel);
+      OctalObserver subscriber2 = new OctalObserver(youtubeChannel);
+      BinaryObserver subscriber3 = new BinaryObserver(youtubeChannel);
 
-      System.out.println("First state change: 15");
-      subject.setState(15);
-      System.out.println("Second state change: 10");
-      subject.setState(10);
+      // YouTube Channel uploads a new video (state = 15)
+      System.out.println("First video uploaded: 15");
+      youtubeChannel.setState(15);
+
+      // One subscriber unsubscribes (OctalObserver)
+      System.out.println("\nSubscriber 2 (Octal) Unsubscribed...");
+      youtubeChannel.detach(subscriber2);
+
+      // New video uploaded (state = 10)
+      System.out.println("\nSecond video uploaded: 10");
+      youtubeChannel.setState(10);
    }
 }
