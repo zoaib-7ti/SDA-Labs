@@ -76,6 +76,7 @@ class HexaObserver extends Observer {
 }
 
 public class ObserverPatternDemoN {
+   @SuppressWarnings("unused")
    public static void main(String[] args) {
       Subject youtubeChannel = new Subject(); // Creating a YouTube Channel
 
