@@ -15,8 +15,12 @@ class Subject {
       notifyAllObservers();
    }
 
-   public void attach(Observer observer) {
+   public void attach(Observer observer) { // Add observer (subscribe)
       observers.add(observer);
+   }
+
+   public void detach(Observer observer) { // Remove observer (unsubscribe)
+      observers.remove(observer);
    }
 
    public void notifyAllObservers() {
