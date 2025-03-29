@@ -6,6 +6,8 @@ zoaib7ti@gmail.com
 Overview
 This codde demonstrates the **Pipe and Filter** architectural pattern using **Java streams and functional programming**. The implementation processes a list of integers through a series of filters (functions) that transform the data in steps.
 
+Note : Since the last filter removes all non-prime numbers, the final result will be an empty list []
+
     How It Works
 
 - The program initializes a list of integers using `List.of(...)`.

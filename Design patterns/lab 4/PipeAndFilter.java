@@ -23,6 +23,7 @@ public class PipeAndFilter {
         filters.add(PipeAndFilter::squareNumbers);
         filters.add(PipeAndFilter::filterNumbersGreaterThanTen);
         filters.add(PipeAndFilter::filterNumbersLessThanFifty); // New filter added
+        filters.add(PipeAndFilter::filterPrimeNumbers); // Prime number filter added
 
         // Process the input through the pipeline
         List<Integer> result = processPipeline(input, filters);
@@ -36,13 +37,6 @@ public class PipeAndFilter {
             List<Function<List<Integer>, List<Integer>>> filters) {
 
         List<Integer> output = input;
-
-        // for (int i = 0; i < filters.size(); i++) {
-        // Function<List<Integer>, List<Integer>> filter = filters.get(i); // Get the
-        // function from the list
-        // output = filter.apply(output); // Apply the function to the output list
-        // }
-        // return output;
 
         for (Function<List<Integer>, List<Integer>> filter : filters) {
             output = filter.apply(output);
@@ -77,4 +71,25 @@ public class PipeAndFilter {
                 .filter(n -> n < 50)
                 .collect(Collectors.toList());
     }
+
+    // Filter to keep only prime numbers
+    private static List<Integer> filterPrimeNumbers(List<Integer> input) {
+        return input.stream()
+                .filter(PipeAndFilter::isPrime)
+                .collect(Collectors.toList());
+    }
+
+    // method to check if a number is prime
+    private static boolean isPrime(int number) {
+        if (number < 2)
+            return false;
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0)
+                return false;
+        }
+        return true;
+    }
 }
+
+// Since the last filter removes all non-prime numbers, the final result will be
+// an empty list []
